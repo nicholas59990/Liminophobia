@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float sprintSpeed = 14f;
+    [SerializeField] private float sprintSpeedMultiplier = 2f; //how many units per second the player model moves when sprinting
     [SerializeField] private float mouseSensitivity = 3.0f;
 
     [Header("Camera Settings")]
@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Rigidbody rb;
     private float angle;
+    private float currentMoveSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -39,17 +40,17 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = (transform.right * horizontalInput + transform.forward * verticalInput).normalized;
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            moveSpeed = sprintSpeed;
+            currentMoveSpeed = moveSpeed * sprintSpeedMultiplier;
         }
         else
         {
-            moveSpeed = 7f;
+            currentMoveSpeed = moveSpeed;
         }
     }
 
     private void FixedUpdate()
     {
-        Vector3 velocity = moveDirection * moveSpeed;
+        Vector3 velocity = moveDirection * currentMoveSpeed;
         rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
     }
 }
