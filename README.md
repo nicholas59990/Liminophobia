@@ -7,7 +7,7 @@ A Backrooms-inspired 3D survival horror game built in Unity. You wake up in a my
 **Authors:** Nicholas Marijon & Daniel Perrotta
  
 The full Game Design Document lives on the `documents` branch.
- 
+
 ---
  
 ## Getting Started
@@ -26,3 +26,7 @@ The full Game Design Document lives on the `documents` branch.
 3. Open the project and load the starting scene.
 4. Press **Play**.
 > The first open may take a while, since Unity regenerates the `Library` folder (which is intentionally not tracked by Git).
+
+## External References
+
+External references can be found in `Limno_Myst/references.md`
