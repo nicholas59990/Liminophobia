@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class InteractUIController : MonoBehaviour
 {
@@ -15,13 +16,13 @@ public class InteractUIController : MonoBehaviour
     private void Update()
     {
         if(playerInteract.GetInteractableObject() != null){
-            Show();
+            Show(playerInteract.GetInteractableObject());
         }else{
             Hide();
         }
     }
 
-    private void Show(){
+    private void Show(NPCInteractable npcInteractable){
         containerObject.SetActive(true);
     }
 
