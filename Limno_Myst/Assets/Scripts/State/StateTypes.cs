@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum StateTypes
 {
- Idle,
- Patrol,
- Chase, 
- Attack   
+    Idle,
+    Patrol,
+    Chase, 
+    Attack   
 }
