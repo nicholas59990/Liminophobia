@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class NPCInteractable : MonoBehaviour
 {
+    [SerializeField] private string interactText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,5 +17,9 @@ public class NPCInteractable : MonoBehaviour
 
     public void Interact(){
         Debug.Log("Interacted!");
+    }
+
+    public string GetInteractText(){
+        return interactText;
     }
 }
