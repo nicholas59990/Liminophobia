@@ -73,8 +73,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Read the movement keys
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         // Calculate the movement direction relative to the player
         moveDirection = (transform.right * horizontalInput + transform.forward * verticalInput).normalized;
