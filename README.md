@@ -26,3 +26,7 @@ The full Game Design Document lives on the `documents` branch.
 3. Open the project and load the starting scene.
 4. Press **Play**.
 > The first open may take a while, since Unity regenerates the `Library` folder (which is intentionally not tracked by Git).
+
+## External References
+
+External references can be found in `Limno_Myst/references.md`
