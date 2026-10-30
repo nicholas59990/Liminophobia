@@ -21,15 +21,4 @@ public class PlayerInteract : MonoBehaviour
             }
         }
     }
-
-    public NPCInteractable GetInteractableObject(){
-        float interactRange = 2f;
-        Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
-        foreach(Collider collider in colliderArray){
-            if(collider.TryGetComponent(out NPCInteractable ncpInteractable)){
-                return ncpInteractable;
-            }
-        }
-        return null;        
-    }
 }
