@@ -115,3 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0493cdbd55096fd4295796ff52b55304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  interactText: Talk with The Sentient Bottle of Yager
