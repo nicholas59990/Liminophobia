@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HideInteractable : MonoBehaviour
+public class HideInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform hidingSpot;
     [SerializeField] private Transform exitSpot;
@@ -8,8 +8,8 @@ public class HideInteractable : MonoBehaviour
 
     public Transform HidingSpot => hidingSpot;
     public Transform ExitSpot => exitSpot;
-    public string HidingText => IsHiding ? "EXIT" : "HIDE";
     public bool IsHiding {get; private set;}
+    public string InteractUIText => IsHiding ? "Exit" : "Hide";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,8 +43,11 @@ public class HideInteractable : MonoBehaviour
 
     public void SetIsHiding(bool value){
         IsHiding = value;
+    }
+
+    public void SetDoorOpen(bool open){
         if(animator != null){
-            animator.SetBool("IsHiding", value);
+            animator.SetBool("DoorOpen", open);
         }
     }
 }

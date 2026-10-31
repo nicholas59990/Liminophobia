@@ -33,11 +33,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Camera Settings")]
     [SerializeField] private Transform playerCamera;
 
+    //Basic movement properties
     private Vector3 moveDirection;
     private Rigidbody rb;
     private float angle;
-    private Collider closetCollider;
+    private Collider playerCollider;
 
+    //Manipulates the player's movement for hiding
     public bool IsHidden{get; private set;}
     public bool IsTransitioning {get; private set;}
     public HideInteractable CurrentSpot {get; private set;}
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get the Rigidbody attached to the player
         rb = GetComponent<Rigidbody>();
+        playerCollider = GetComponent<Collider>();
 
         // Prevent physics from rotating the player automatically
         rb.freezeRotation = true;
@@ -54,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         // Lock the mouse to the game window
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        currentStamina = maxStamina;
 
         // Start with full stamina
         currentStamina = maxStamina;
@@ -78,12 +82,17 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0f, mouseX, 0f);
 
         // Limit how far the camera can look up or down
-        angle = Mathf.Clamp(angle - mouseY, -70f, 70f);
+        angle = Mathf.Clamp(angle - mouseY, -60f, 60f);
 
         // Rotate the camera if one has been assigned
         if (playerCamera != null)
         {
             playerCamera.localEulerAngles = new Vector3(angle, 0f, 0f);
+        }
+
+        if(IsHidden){
+            moveDirection = Vector3.zero;
+            return;
         }
 
         // Read the movement keys
@@ -143,6 +152,10 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is used for physics-related movement
     private void FixedUpdate()
     {
+        if(rb.isKinematic){
+            return;
+        }
+
         // Calculate the player's movement velocity
         Vector3 velocity = moveDirection * moveSpeed;
         
@@ -152,12 +165,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void StartHiding(HideInteractable hideInteractable){
         if(!IsHidden && !IsTransitioning){
-            StartCoroutine(ExitRoutine());
+            StartCoroutine(StartRoutine(hideInteractable));
         }
     }
 
     public void StopHiding(){
-        if(IsHidden && IsTransitioning){
+        if(IsHidden && !IsTransitioning){
             StartCoroutine(ExitRoutine());
         }
     }
@@ -166,20 +179,29 @@ public class PlayerMovement : MonoBehaviour
         IsTransitioning = true;
         CurrentSpot = hideInteractable;
         hideInteractable.SetIsHiding(true);
+
+        //Physics doesn't affect the player while hiding if they try to move
         moveDirection = Vector3.zero;
         rb.linearVelocity = Vector3.zero;
         rb.isKinematic = true;
-        closetCollider.enabled = false;
+        playerCollider.enabled = false;
+
+        //handle the the door animations of the locker and check if the player where they should hide and if they are hidden to the game engine
+        hideInteractable.SetDoorOpen(true);
         yield return MoveTo(hideInteractable.HidingSpot.position, hideInteractable.HidingSpot.rotation, 0.4f);
+        hideInteractable.SetDoorOpen(false);
         IsHidden = true;
         IsTransitioning = false;
     }
 
     private IEnumerator ExitRoutine(){
         IsTransitioning = true;
+        HideInteractable hideInteractable = CurrentSpot;
+        hideInteractable.SetDoorOpen(true);
         yield return MoveTo(CurrentSpot.ExitSpot.position, CurrentSpot.ExitSpot.rotation, 0.4f);
+        hideInteractable.SetDoorOpen(false);
         rb.isKinematic = false;
-        closetCollider.enabled = true;
+        playerCollider.enabled = true;
         CurrentSpot.SetIsHiding(false);
         CurrentSpot = null;
         IsHidden = false;
@@ -194,5 +216,10 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         transform.SetPositionAndRotation(spot, rotate);
+        //Reset the camera pitch so that you constantly look straight between hiding and getting out of the hiding spot
+        angle = 0f;
+        if(playerCamera != null){
+            playerCamera.localEulerAngles = Vector3.zero;
+        }
     }
 }

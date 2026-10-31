@@ -5,6 +5,7 @@ public class InteractUIController : MonoBehaviour
 {
     [SerializeField] private GameObject containerObject;
     [SerializeField] private PlayerInteract playerInteract;
+    [SerializeField] private TMP_Text promptText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,10 +24,14 @@ public class InteractUIController : MonoBehaviour
             return;
         }
 
-        if(playerInteract.GetInteractableObject() != null){
-            Show(playerInteract.GetInteractableObject());
+        IInteractable target = playerInteract.GetInteractableObject();
+        if(target != null){
+            promptText.text = "[E] " + target.InteractUIText;
+            containerObject.SetActive(true);
+            //Show(playerInteract.GetInteractableObject());
         }else{
-            Hide();
+            containerObject.SetActive(false);
+            //Hide();
         }
     }
 
