@@ -22,6 +22,11 @@ public class ItemPickup : MonoBehaviour
         }
 
         // TODO: when the inventory exists, add the item here
+        /*
+        * For now we using this for testing purposes but later a fully implemented
+        * Inventory system will be built
+        */
+        SimpleInventory.Add(itemName);
 
         // Play the pickup sound
         if (pickupSound != null)
