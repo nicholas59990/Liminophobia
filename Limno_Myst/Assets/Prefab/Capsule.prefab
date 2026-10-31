@@ -324,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractUIController
   containerObject: {fileID: 8615301226127980411}
   playerInteract: {fileID: 5566748475079015666}
+  promptText: {fileID: 53345746939759001}
 --- !u!1 &2441247276165905863
 GameObject:
   m_ObjectHideFlags: 0
