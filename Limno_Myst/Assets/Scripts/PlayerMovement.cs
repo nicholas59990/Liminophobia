@@ -44,6 +44,23 @@ public class PlayerMovement : MonoBehaviour
     public bool IsTransitioning {get; private set;}
     public HideInteractable CurrentSpot {get; private set;}
 
+    [Header("Footsteps and Camera Bob")]
+    
+    [SerializeField] private float walkStepTime = 0.5f;
+    [SerializeField] private float sprintStepTime = 0.3f;
+
+    // How far the camera dips on each step
+    [SerializeField] private float walkBobAmount = 0.04f;
+    [SerializeField] private float sprintBobAmount = 0.08f;
+
+    // Footsteps sound a bit higher when sprinting
+    [SerializeField] private float sprintPitch = 1.15f;
+
+    private AudioSource footstepSource;
+    private float stepTimer;
+    private Vector3 cameraStartPosition;
+    private bool isSprinting;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -61,6 +78,15 @@ public class PlayerMovement : MonoBehaviour
 
         // Start with full stamina
         currentStamina = maxStamina;
+
+        // Remember where the camera normally sits
+        if (playerCamera != null)
+        {
+            cameraStartPosition = playerCamera.localPosition;
+        }
+
+        // Find the Audio Source on this object
+        footstepSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -71,6 +97,15 @@ public class PlayerMovement : MonoBehaviour
         if (DialogueManager.IsPlaying)
         {
             moveDirection = Vector3.zero;
+            isSprinting = false;
+
+            // Stop the footstep sound
+            if (footstepSource != null && footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+
+            playerCamera.localPosition = cameraStartPosition;
             return;
         }
 
@@ -111,6 +146,9 @@ public class PlayerMovement : MonoBehaviour
         // Sprint only when Shift is held, the player is moving, and not exhausted
         if (sprintKey && isMoving && !isExhausted)
         {
+
+            isSprinting = true;
+
             // Increase the player's movement speed
             moveSpeed = 7f * 2;
 
@@ -126,6 +164,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+
+            isSprinting = false;
+
             // Use the normal movement speed
             moveSpeed = 7f;
 
@@ -147,6 +188,8 @@ public class PlayerMovement : MonoBehaviour
         {
             staminaBar.SetStamina(currentStamina, maxStamina);
         }
+
+        HandleFootsteps(isMoving);
     }
 
     // FixedUpdate is used for physics-related movement
@@ -221,5 +264,46 @@ public class PlayerMovement : MonoBehaviour
         if(playerCamera != null){
             playerCamera.localEulerAngles = Vector3.zero;
         }
+    // Plays footsteps and bobs the camera
+    private void HandleFootsteps(bool isMoving)
+    {
+        // Standing still (reset the timer and move the camera back to normal)
+        if (!isMoving)
+        {
+            stepTimer = 0f;
+            playerCamera.localPosition = cameraStartPosition;
+
+            // Stop the footstep sound
+            if (footstepSource != null && footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+
+            return;
+        }
+
+        // Pick the settings for walking or sprinting
+        float stepTime = isSprinting ? sprintStepTime : walkStepTime;
+        float bobAmount = isSprinting ? sprintBobAmount : walkBobAmount;
+
+        // Count up to the next step
+        stepTimer = stepTimer + Time.deltaTime;
+
+        if (stepTimer >= stepTime)
+        {
+            stepTimer = stepTimer - stepTime;
+
+            // Play the footstep sound
+            if (footstepSource != null)
+            {
+                footstepSource.pitch = isSprinting ? sprintPitch : 1f;
+                footstepSource.Play();
+            }
+        }
+
+        // The camera is lowest at the moment of each step
+        float prog = stepTimer / stepTime;
+        float bobYpos = -Mathf.Cos(prog * Mathf.PI * 2f) * bobAmount;
+        playerCamera.localPosition = cameraStartPosition + new Vector3(0f, bobYpos, 0f);
     }
 }
