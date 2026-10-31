@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -35,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Rigidbody rb;
     private float angle;
+    private Collider closetCollider;
+
+    public bool IsHidden{get; private set;}
+    public bool IsTransitioning {get; private set;}
+    public HideInteractable CurrentSpot {get; private set;}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -134,5 +140,51 @@ public class PlayerMovement : MonoBehaviour
         
         // Apply movement while keeping the existing vertical velocity
         rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+    }
+
+    public void StartHiding(HideInteractable hideInteractable){
+        if(!IsHidden && !IsTransitioning){
+            StartCoroutine(ExitRoutine());
+        }
+    }
+
+    public void StopHiding(){
+        if(IsHidden && IsTransitioning){
+            StartCoroutine(ExitRoutine());
+        }
+    }
+
+    private IEnumerator StartRoutine(HideInteractable hideInteractable){
+        IsTransitioning = true;
+        CurrentSpot = hideInteractable;
+        hideInteractable.SetIsHiding(true);
+        moveDirection = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
+        rb.isKinematic = true;
+        closetCollider.enabled = false;
+        yield return MoveTo(hideInteractable.HidingSpot.position, hideInteractable.HidingSpot.rotation, 0.4f);
+        IsHidden = true;
+        IsTransitioning = false;
+    }
+
+    private IEnumerator ExitRoutine(){
+        IsTransitioning = true;
+        yield return MoveTo(CurrentSpot.ExitSpot.position, CurrentSpot.ExitSpot.rotation, 0.4f);
+        rb.isKinematic = false;
+        closetCollider.enabled = true;
+        CurrentSpot.SetIsHiding(false);
+        CurrentSpot = null;
+        IsHidden = false;
+        IsTransitioning = false;
+    }
+
+    private IEnumerator MoveTo(Vector3 spot, Quaternion rotate, float duration){
+        Vector3 startPosition = transform.position;
+        Quaternion startRotation = transform.rotation;
+        for(float time = 0f; time < 1f; time += Time.deltaTime / duration){
+            transform.SetPositionAndRotation(Vector3.Lerp(startPosition, spot, time), Quaternion.Slerp(startRotation, rotate, time));
+            yield return null;
+        }
+        transform.SetPositionAndRotation(spot, rotate);
     }
 }
