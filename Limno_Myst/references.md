@@ -16,4 +16,11 @@
 
 # External Implementation Sources
 - Stamina System: https://www.youtube.com/watch?v=Fs2YCoamO_U&t=52s 
-- Player Interaction: https://www.youtube.com/watch?v=LdoImzaY6M4 
+- Player Interaction: https://www.youtube.com/watch?v=LdoImzaY6M4
+- NPC Dialogue (Ink runtime API): https://github.com/inkle/ink/blob/master/Documentation/RunningYourInk.md
+
+# Tools & Packages
+- Ink (dialogue scripting language) by inkle (installed via the Unity Asset Store, version 1.1.8): https://assetstore.unity.com/packages/tools/integration/ink-integration-for-unity-60055
+- Ink Unity Integration by inkle
+    - Open-Source version (MIT license): https://github.com/inkle/ink-unity-integration
+    - Note: `Assets/Ink/Editor/Core/InkEditorUtils.cs` was modified to fix a compile error on Unity 6.5 (obsolete `EndNameEditAction`)

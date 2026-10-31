@@ -15,6 +15,14 @@ public class InteractUIController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+        // Hide the prompt while dialogue is open
+        if (DialogueManager.IsPlaying)
+        {
+            containerObject.SetActive(false);
+            return;
+        }
+
         if(playerInteract.GetInteractableObject() != null){
             Show(playerInteract.GetInteractableObject());
         }else{
