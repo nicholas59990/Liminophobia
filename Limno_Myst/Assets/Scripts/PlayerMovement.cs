@@ -56,6 +56,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+        // Do not move or look around while dialogue is open
+        if (DialogueManager.IsPlaying)
+        {
+            moveDirection = Vector3.zero;
+            return;
+        }
+
         // Read mouse movement to rotate the player and camera
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;

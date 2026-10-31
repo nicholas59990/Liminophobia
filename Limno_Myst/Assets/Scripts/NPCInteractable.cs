@@ -2,19 +2,13 @@ using UnityEngine;
 
 public class NPCInteractable : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // The compiled Ink Story for this NPC
+    [SerializeField] private TextAsset inkJSON;
 
     public void Interact(){
-        Debug.Log("Interacted!");
+        // Debug.Log("Interacted!");
+
+        DialogueManager.Instance.StartDialogue(inkJSON);
     }
 }
