@@ -97,6 +97,15 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        // Read the objective the story set
+        string newObjective = story.variablesState["objective"].ToString();
+
+        // Only show it if there is one
+        if (newObjective != "" && ObjectiveHUD.Instance != null)
+        {
+            ObjectiveHUD.Instance.SetObjective(newObjective);
+        }
+
         IsPlaying = false;
         dialoguePanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
