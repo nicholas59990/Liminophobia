@@ -646,6 +646,14 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7927511562494618643, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7927511562494618643, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 8432177701214400807, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
       propertyPath: m_Name
       value: Canvas
