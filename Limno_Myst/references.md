@@ -10,7 +10,8 @@
 - Bonewalker: https://sketchfab.com/3d-models/void-creature-a3a8d9ba14dd4a958075d87d575c8ab6 
 - Flashlight: https://assetstore.unity.com/packages/3d/props/electronics/flashlight-18972 
 - Keys: https://assetstore.unity.com/packages/3d/props/tools/simple-low-poly-keys-3digitalis-231162 
-- Furniture: https://assetstore.unity.com/packages/3d/props/furniture/furniture-mega-pack-free-330002 
+- Furniture: https://assetstore.unity.com/packages/3d/props/furniture/furniture-mega-pack-free-330002
+- Locker: https://assetstore.unity.com/packages/package/56405  
 
 
 # External Implementation Sources
