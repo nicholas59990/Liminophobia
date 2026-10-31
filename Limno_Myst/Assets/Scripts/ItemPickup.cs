@@ -8,9 +8,13 @@ public class ItemPickup : MonoBehaviour
     [SerializeField] private bool completesObjective = false;
     [SerializeField] private string nextObjective = "";
 
+    // The pickup sound
+    [SerializeField] private AudioClip pickupSound;
+
     // Runs when something enters the item's trigger
     private void OnTriggerEnter(Collider other)
     {
+
         // Only react to the player
         if (!other.CompareTag("Player"))
         {
@@ -18,7 +22,13 @@ public class ItemPickup : MonoBehaviour
         }
 
         // TODO: when the inventory exists, add the item here
-        
+
+        // Play the pickup sound
+        if (pickupSound != null)
+        {
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+        }
+
         Debug.Log("Picked up " + itemName);
 
         // Finish the current objective if the item is meant to
