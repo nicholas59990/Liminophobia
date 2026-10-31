@@ -264,6 +264,8 @@ public class PlayerMovement : MonoBehaviour
         if(playerCamera != null){
             playerCamera.localEulerAngles = Vector3.zero;
         }
+    }
+
     // Plays footsteps and bobs the camera
     private void HandleFootsteps(bool isMoving)
     {

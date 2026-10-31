@@ -1671,6 +1671,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7642002849294355586}
     m_Modifications:
+    - target: {fileID: 3448670317405330377, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: normalColor.b
+      value: 0.04225129
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448670317405330377, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: normalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448670317405330377, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: normalColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149906542387282804, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.043137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149906542387282804, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149906542387282804, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7284748864382496291, guid: c75ff2f9d175fcd42875c765fc40193a, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -1851,6 +1875,7 @@ MonoBehaviour:
   choiceButtons:
   - {fileID: 4843964406925287283}
   - {fileID: 508871637451574576}
+  typingSpeed: 0.04
 --- !u!114 &5228697122859101722
 MonoBehaviour:
   m_ObjectHideFlags: 0

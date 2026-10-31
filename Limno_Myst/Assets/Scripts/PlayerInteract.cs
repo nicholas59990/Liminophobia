@@ -60,6 +60,9 @@ public class PlayerInteract : MonoBehaviour
             if(interactable == null){
                 continue;
             }
+            if(!interactable.CanInteract){
+                continue;
+            }
             float distance = Vector3.Distance(transform.position, ((MonoBehaviour)interactable).transform.position);
             if(distance < closestDistance){
                 closestDistance = distance;

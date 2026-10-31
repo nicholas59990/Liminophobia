@@ -8,7 +8,9 @@ public class StaminaBar : MonoBehaviour
     
     [Header("Bar Colors")]
     // The normal orange color of the stamina bar
-    [SerializeField] private Color normalColor = new Color(1f, 0.65f, 0f);
+    [SerializeField] private Color normalColor = Color.green;
+
+    [SerializeField] private Color mediumColor = new Color(1f, 0.65f, 0f);
 
     // The color used when stamina is low
     [SerializeField] private Color lowColor = Color.red;
@@ -41,6 +43,10 @@ public class StaminaBar : MonoBehaviour
             if (targetFill <= 0.2f)
             {
                 staminaFill.color = lowColor; 
+            }
+            else if(targetFill <= 0.55)
+            {
+                staminaFill.color = mediumColor;
             }
             else
             {

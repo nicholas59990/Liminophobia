@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
 
     [Header("Lock")]
@@ -32,6 +32,9 @@ public class Door : MonoBehaviour
     [SerializeField] private AudioClip openSound;
     [SerializeField] private AudioClip lockedSound;
 
+    [Header("Dialogue")]
+    [SerializeField] private TextAsset lockedDialogue;
+
     // True while the player is standing near the door
     private bool playerNear;
 
@@ -40,6 +43,13 @@ public class Door : MonoBehaviour
 
     private Quaternion closedRotation;
     private Quaternion openRotation;
+
+    public string InteractUIText => "Open Door";
+    public bool CanInteract => !isOpen;
+    
+    public void Interact(PlayerInteract playerInteract){
+        TryOpen();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,12 +62,6 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Press E near a closed door
-        if (playerNear && !isOpen & !DialogueManager.IsPlaying && Input.GetKeyDown(KeyCode.E))
-        {
-            TryOpen();
-        }
-
         // Swing the door toward open or closed
         Quaternion target = isOpen ? openRotation : closedRotation;
         hinge.localRotation = Quaternion.RotateTowards(hinge.localRotation, target, openSpeed * Time.deltaTime);
@@ -76,7 +80,9 @@ public class Door : MonoBehaviour
                 {
                     AudioSource.PlayClipAtPoint(lockedSound, transform.position);
                 }
-
+                if(lockedDialogue != null){
+                    DialogueManager.Instance.StartDialogue(lockedDialogue);
+                }
                 return;
             }
 
@@ -103,21 +109,5 @@ public class Door : MonoBehaviour
             ObjectiveHUD.Instance.SetObjective(nextObjective);
         }
         */
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerNear = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerNear = false;
-        }
     }
 }

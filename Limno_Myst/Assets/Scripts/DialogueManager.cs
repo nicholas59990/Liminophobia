@@ -205,7 +205,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         // Read the objective the story set
-        string newObjective = story.variablesState["objective"].ToString();
+        object objectiveValue = story.variablesState["objective"];
+        string newObjective = objectiveValue != null ? objectiveValue.ToString() : "";
 
         // Only show it if there is one
         if (newObjective != "" && ObjectiveHUD.Instance != null)

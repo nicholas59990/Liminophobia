@@ -1,0 +1,3 @@
+﻿VAR objective = ""
+Hmmm this door seems to be locked...
+-> END
