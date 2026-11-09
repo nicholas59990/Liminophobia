@@ -24,14 +24,6 @@ public class PlayerInteract : MonoBehaviour
             if(target != null){
                 target.Interact(this);
             }
-            /*
-            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
-            foreach(Collider collider in colliderArray){
-                if(collider.TryGetComponent(out NPCInteractable npcInteractable)){
-                    npcInteractable.Interact();
-                }
-            }
-            */
         }
     }
 
@@ -40,7 +32,6 @@ public class PlayerInteract : MonoBehaviour
     }
 
     public IInteractable GetInteractableObject(){
-        //List<NPCInteractable> npcInteractableList = new List<NPCInteractable>();
         if(movement.IsTransitioning){
             return null;
         }
@@ -51,11 +42,6 @@ public class PlayerInteract : MonoBehaviour
         float closestDistance = float.MaxValue;
         Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
         foreach(Collider collider in colliderArray){
-            /*
-            if(collider.TryGetComponent(out NPCInteractable npcInteractable)){
-                npcInteractableList.Add(npcInteractable);
-            }
-            */
             IInteractable interactable = collider.GetComponentInParent<IInteractable>();
             if(interactable == null){
                 continue;
@@ -69,18 +55,6 @@ public class PlayerInteract : MonoBehaviour
                 closest = interactable;
             }
         }
-        /*
-        NPCInteractable closestNPC = null;
-        foreach(NPCInteractable npc in npcInteractableList){
-            if(closestNPC == null){
-                closestNPC = npc;
-            }else{
-                if(Vector3.Distance(transform.position, npc.transform.position) < Vector3.Distance(transform.position, closestNPC.transform.position)){
-                    closestNPC = npc;
-                }
-            }
-        }
-        */
         return closest;        
     }
 }

@@ -44,10 +44,4 @@ public class HideInteractable : MonoBehaviour, IInteractable
     public void SetIsHiding(bool value){
         IsHiding = value;
     }
-
-    public void SetDoorOpen(bool open){
-        if(animator != null){
-            animator.SetBool("DoorOpen", open);
-        }
-    }
 }

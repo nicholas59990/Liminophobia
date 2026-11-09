@@ -228,11 +228,10 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.isKinematic = true;
         playerCollider.enabled = false;
-
-        //handle the the door animations of the locker and check if the player where they should hide and if they are hidden to the game engine
-        hideInteractable.SetDoorOpen(true);
+        yield return FadeManager.Instance.FadeToBlack();
+        //check if the player where they should hide and if they are hidden to the game engine
         yield return MoveTo(hideInteractable.HidingSpot.position, hideInteractable.HidingSpot.rotation, 0.4f);
-        hideInteractable.SetDoorOpen(false);
+        yield return FadeManager.Instance.FadeFromBlack();
         IsHidden = true;
         IsTransitioning = false;
     }
@@ -240,9 +239,9 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ExitRoutine(){
         IsTransitioning = true;
         HideInteractable hideInteractable = CurrentSpot;
-        hideInteractable.SetDoorOpen(true);
+        yield return FadeManager.Instance.FadeToBlack();
         yield return MoveTo(CurrentSpot.ExitSpot.position, CurrentSpot.ExitSpot.rotation, 0.4f);
-        hideInteractable.SetDoorOpen(false);
+        yield return FadeManager.Instance.FadeFromBlack();
         rb.isKinematic = false;
         playerCollider.enabled = true;
         CurrentSpot.SetIsHiding(false);

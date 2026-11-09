@@ -69,18 +69,18 @@ public class Door : MonoBehaviour, IInteractable
 
     private void TryOpen()
     {
-        // TODO add sound
-        // Locked and no key (play the locked sound and stop)
         
             if (isLocked && !SimpleInventory.Has(keyNeeded))
             {
                 Debug.Log("The door is locked");
-
+                //Move player camera to face door
+                
                 if (lockedSound != null)
                 {
                     AudioSource.PlayClipAtPoint(lockedSound, transform.position);
                 }
                 if(lockedDialogue != null){
+
                     DialogueManager.Instance.StartDialogue(lockedDialogue);
                 }
                 return;
