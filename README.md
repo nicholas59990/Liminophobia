@@ -7,6 +7,8 @@ A Backrooms-inspired 3D survival horror game built in Unity. You wake up in a my
 **Authors:** Nicholas Marijon & Daniel Perrotta
  
 The full Game Design Document lives on the `documents` branch.
+
+The full User Playtest Comments lives on the `documents` branch.
  
 ---
  
