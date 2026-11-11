@@ -74,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
         // Lock the mouse to the game window
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        currentStamina = maxStamina;
 
         // Start with full stamina
         currentStamina = maxStamina;
@@ -105,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
                 footstepSource.Stop();
             }
 
-            playerCamera.localPosition = cameraStartPosition;
+            //playerCamera.localPosition = cameraStartPosition;
             return;
         }
 
