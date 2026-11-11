@@ -28,6 +28,10 @@ public class InventoyManager : MonoBehaviour
             InventoryMenu.SetActive(true); // activates menu
             menuAct = true;
         }
+    }
 
+    public void AddItem(string itemName, int quantity, Sprite itemSprite)
+    {
+        
     }
 }
