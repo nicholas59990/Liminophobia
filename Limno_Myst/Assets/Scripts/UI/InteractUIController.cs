@@ -10,7 +10,7 @@ public class InteractUIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,21 +25,14 @@ public class InteractUIController : MonoBehaviour
         }
 
         IInteractable target = playerInteract.GetInteractableObject();
-        if(target != null){
+        if (target != null && target.CanInteract)
+        {
             promptText.text = "[E] " + target.InteractUIText;
             containerObject.SetActive(true);
-            //Show(playerInteract.GetInteractableObject());
-        }else{
-            containerObject.SetActive(false);
-            //Hide();
         }
-    }
-
-    private void Show(NPCInteractable npcInteractable){
-        containerObject.SetActive(true);
-    }
-
-    private void Hide(){
-        containerObject.SetActive(false);
+        else
+        {
+            containerObject.SetActive(false);
+        }
     }
 }
