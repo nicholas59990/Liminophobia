@@ -40,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
     private Collider playerCollider;
 
     //Manipulates the player's movement for hiding
-    public bool IsHidden{get; private set;}
-    public bool IsTransitioning {get; private set;}
-    public HideInteractable CurrentSpot {get; private set;}
+    public bool IsHidden { get; private set; }
+    public bool IsTransitioning { get; private set; }
+    public HideInteractable CurrentSpot { get; private set; }
 
     [Header("Footsteps and Camera Bob")]
-    
+
     [SerializeField] private float walkStepTime = 0.5f;
     [SerializeField] private float sprintStepTime = 0.3f;
 
@@ -125,7 +125,8 @@ public class PlayerMovement : MonoBehaviour
             playerCamera.localEulerAngles = new Vector3(angle, 0f, 0f);
         }
 
-        if(IsHidden){
+        if (IsHidden)
+        {
             moveDirection = Vector3.zero;
             return;
         }
@@ -136,13 +137,13 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate the movement direction relative to the player
         moveDirection = (transform.right * horizontalInput + transform.forward * verticalInput).normalized;
-        
+
         // Check whether either Shift key is being held
         bool sprintKey = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
         // Check whether the player is moving
         bool isMoving = horizontalInput != 0 || verticalInput != 0;
-        
+
         // Sprint only when Shift is held, the player is moving, and not exhausted
         if (sprintKey && isMoving && !isExhausted)
         {
@@ -195,30 +196,41 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is used for physics-related movement
     private void FixedUpdate()
     {
-        if(rb.isKinematic){
+        if (rb.isKinematic)
+        {
             return;
         }
 
         // Calculate the player's movement velocity
         Vector3 velocity = moveDirection * moveSpeed;
-        
+
         // Apply movement while keeping the existing vertical velocity
         rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
     }
 
-    public void StartHiding(HideInteractable hideInteractable){
-        if(!IsHidden && !IsTransitioning){
+    public void StartHiding(HideInteractable hideInteractable)
+    {
+        if (playerCamera == null)
+        {
+            return;
+        }
+        if (!IsHidden && !IsTransitioning)
+        {
             StartCoroutine(StartRoutine(hideInteractable));
         }
+
     }
 
-    public void StopHiding(){
-        if(IsHidden && !IsTransitioning){
+    public void StopHiding()
+    {
+        if (IsHidden && !IsTransitioning)
+        {
             StartCoroutine(ExitRoutine());
         }
     }
 
-    private IEnumerator StartRoutine(HideInteractable hideInteractable){
+    private IEnumerator StartRoutine(HideInteractable hideInteractable)
+    {
         IsTransitioning = true;
         CurrentSpot = hideInteractable;
         hideInteractable.SetIsHiding(true);
@@ -228,21 +240,21 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.isKinematic = true;
         playerCollider.enabled = false;
-
-        //handle the the door animations of the locker and check if the player where they should hide and if they are hidden to the game engine
-        hideInteractable.SetDoorOpen(true);
+        yield return FadeManager.Instance.FadeToBlack();
+        //check if the player where they should hide and if they are hidden to the game engine
         yield return MoveTo(hideInteractable.HidingSpot.position, hideInteractable.HidingSpot.rotation, 0.4f);
-        hideInteractable.SetDoorOpen(false);
+        yield return FadeManager.Instance.FadeFromBlack();
         IsHidden = true;
         IsTransitioning = false;
     }
 
-    private IEnumerator ExitRoutine(){
+    private IEnumerator ExitRoutine()
+    {
         IsTransitioning = true;
         HideInteractable hideInteractable = CurrentSpot;
-        hideInteractable.SetDoorOpen(true);
+        yield return FadeManager.Instance.FadeToBlack();
         yield return MoveTo(CurrentSpot.ExitSpot.position, CurrentSpot.ExitSpot.rotation, 0.4f);
-        hideInteractable.SetDoorOpen(false);
+        yield return FadeManager.Instance.FadeFromBlack();
         rb.isKinematic = false;
         playerCollider.enabled = true;
         CurrentSpot.SetIsHiding(false);
@@ -251,17 +263,20 @@ public class PlayerMovement : MonoBehaviour
         IsTransitioning = false;
     }
 
-    private IEnumerator MoveTo(Vector3 spot, Quaternion rotate, float duration){
+    private IEnumerator MoveTo(Vector3 spot, Quaternion rotate, float duration)
+    {
         Vector3 startPosition = transform.position;
         Quaternion startRotation = transform.rotation;
-        for(float time = 0f; time < 1f; time += Time.deltaTime / duration){
+        for (float time = 0f; time < 1f; time += Time.deltaTime / duration)
+        {
             transform.SetPositionAndRotation(Vector3.Lerp(startPosition, spot, time), Quaternion.Slerp(startRotation, rotate, time));
             yield return null;
         }
         transform.SetPositionAndRotation(spot, rotate);
         //Reset the camera pitch so that you constantly look straight between hiding and getting out of the hiding spot
         angle = 0f;
-        if(playerCamera != null){
+        if (playerCamera != null)
+        {
             playerCamera.localEulerAngles = Vector3.zero;
         }
     }

@@ -16,7 +16,7 @@
 
 # External Implementation Sources
 - Stamina System: https://www.youtube.com/watch?v=Fs2YCoamO_U&t=52s 
-- Player Interaction: https://www.youtube.com/watch?v=LdoImzaY6M4
+- Player Interaction: https://www.youtube.com/watch?v=LdoImzaY6M4 and https://www.youtube.com/watch?v=Eg7oP7mcNbc
 - NPC Dialogue (Ink runtime API): https://github.com/inkle/ink/blob/master/Documentation/RunningYourInk.md
 
 # Tools & Packages
