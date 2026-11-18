@@ -6980,6 +6980,8 @@ MonoBehaviour:
   itemName: Key
   quantity: 1
   sprite: {fileID: 21300000, guid: ad052d52cfd2af2428d809beca38b450, type: 3}
+  itemDescription: A worn gold key. The metal is cold to the touch. Something about
+    it feels important.
 --- !u!1 &328175291
 GameObject:
   m_ObjectHideFlags: 0
@@ -12573,17 +12575,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &599611160 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6028220207925075679, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
-  m_PrefabInstance: {fileID: 1526447998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8195bf664bc8c648ae278bf7884d145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraController
 --- !u!1 &605550188
 GameObject:
   m_ObjectHideFlags: 0
@@ -34048,10 +34039,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule
       objectReference: {fileID: 0}
-    - target: {fileID: 3300142980554261051, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
-      propertyPath: playerController
-      value: 
-      objectReference: {fileID: 599611160}
     - target: {fileID: 7642002849294355586, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 510

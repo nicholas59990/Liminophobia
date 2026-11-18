@@ -7,6 +7,9 @@ public class Item : MonoBehaviour
     [SerializeField] private int quantity;
     [SerializeField] Sprite sprite;
 
+    [TextArea]
+    [SerializeField] string itemDescription;
+
     private InventoryManager inventoryManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +21,7 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            inventoryManager.AddItem(itemName, quantity, sprite);
+            inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
             Destroy(gameObject);
         }
     }
