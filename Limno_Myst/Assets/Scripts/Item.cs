@@ -21,8 +21,12 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
-            Destroy(gameObject);
+            int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+            if (leftOverItems <= 0) {
+                Destroy(gameObject);
+            } else { // If leftovers change the quantity of this item
+                quantity = leftOverItems;
+            }
         }
     }
 }

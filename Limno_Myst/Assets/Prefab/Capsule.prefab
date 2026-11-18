@@ -171,6 +171,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 9062038331829987400}
   itemImage: {fileID: 2099000462899529930}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -274,6 +275,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 5832044725928721085}
   itemImage: {fileID: 7768665956443931475}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -726,6 +728,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 2538252771015726175}
   itemImage: {fileID: 8419172033206610768}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -966,6 +969,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 7233907432462044526}
   itemImage: {fileID: 6182276761657931850}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -1492,6 +1496,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 1999140973254151406}
   itemImage: {fileID: 4898794156176984335}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -1595,6 +1600,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 561655221599142329}
   itemImage: {fileID: 7801016874794761197}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -1698,6 +1704,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 747895549783621767}
   itemImage: {fileID: 4642995166106072654}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -1876,6 +1883,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 918874052991716042}
   itemImage: {fileID: 2467955040259184376}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -2455,6 +2463,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 7703535909919003248}
   itemImage: {fileID: 9040162486077274682}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -4003,6 +4012,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 799720945127195280}
   itemImage: {fileID: 8216112817138795572}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -4256,6 +4266,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 4113431363863314005}
   itemImage: {fileID: 2842981637696835236}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -4887,6 +4898,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 3709103690492684912}
   itemImage: {fileID: 5464581798135680134}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -5750,6 +5762,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 8114635303509275553}
   itemImage: {fileID: 3441218162265926274}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -6717,6 +6730,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 3435018811289678412}
   itemImage: {fileID: 4649326443863642327}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -6895,6 +6909,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 7991889732387337782}
   itemImage: {fileID: 5623856727423672844}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -7963,6 +7978,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 1219839341792649106}
   itemImage: {fileID: 87308818002146320}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -8973,6 +8989,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 4648160961209654530}
   itemImage: {fileID: 3136298325652724408}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -9558,6 +9575,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 1537530558831576688}
   itemImage: {fileID: 8875410762895487367}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -9661,6 +9679,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 1843771727879282975}
   itemImage: {fileID: 6415339683593153579}
   itemDescriptionImage: {fileID: 6933675913722178693}
@@ -10162,6 +10181,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
+  maxNumberOfItems: 1
   quantityText: {fileID: 546390957244280858}
   itemImage: {fileID: 7348679536664329640}
   itemDescriptionImage: {fileID: 6933675913722178693}
