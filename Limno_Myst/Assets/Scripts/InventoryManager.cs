@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class InventoyManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
 
     public GameObject InventoryMenu;
@@ -23,6 +23,8 @@ public class InventoyManager : MonoBehaviour
             Time.timeScale = 1;
             InventoryMenu.SetActive(false); // deactivates menu
             menuAct = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         else if (Input.GetButtonDown("Inventory") && !menuAct)
@@ -30,6 +32,8 @@ public class InventoyManager : MonoBehaviour
             Time.timeScale = 0;
             InventoryMenu.SetActive(true); // activates menu
             menuAct = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -42,6 +46,15 @@ public class InventoyManager : MonoBehaviour
                 itemSlot[i].AddItem(itemName, quantity, itemSprite);
                 return;
             }
+        }
+    }
+
+    public void DeselectAllSlots()
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            itemSlot[i].selectedShader.SetActive(false);
+            itemSlot[i].thisItemSelected = false;
         }
     }
 }

@@ -7,18 +7,18 @@ public class Item : MonoBehaviour
     [SerializeField] private int quantity;
     [SerializeField] Sprite sprite;
 
-    private InventoyManager inventoyManager;
+    private InventoryManager inventoryManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoyManager = GameObject.Find("Canvas").GetComponent<InventoyManager>();
+        inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            inventoyManager.AddItem(itemName, quantity, sprite);
+            inventoryManager.AddItem(itemName, quantity, sprite);
             Destroy(gameObject);
         }
     }
