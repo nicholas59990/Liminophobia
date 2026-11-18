@@ -12,12 +12,14 @@
 - Keys: https://assetstore.unity.com/packages/3d/props/tools/simple-low-poly-keys-3digitalis-231162 
 - Furniture: https://assetstore.unity.com/packages/3d/props/furniture/furniture-mega-pack-free-330002
 - Locker: https://assetstore.unity.com/packages/package/56405  
+- Wood Door Textures: https://assetstore.unity.com/packages/2d/textures-materials/wood/plank-textures-pbr-72318#content
 
 
 # External Implementation Sources
 - Stamina System: https://www.youtube.com/watch?v=Fs2YCoamO_U&t=52s 
 - Player Interaction: https://www.youtube.com/watch?v=LdoImzaY6M4 and https://www.youtube.com/watch?v=Eg7oP7mcNbc
 - NPC Dialogue (Ink runtime API): https://github.com/inkle/ink/blob/master/Documentation/RunningYourInk.md
+- Procedural Room Generation: https://www.youtube.com/watch?v=EpqzDd933R0
 
 # Tools & Packages
 - Ink (dialogue scripting language) by inkle (installed via the Unity Asset Store, version 1.1.8): https://assetstore.unity.com/packages/tools/integration/ink-integration-for-unity-60055
