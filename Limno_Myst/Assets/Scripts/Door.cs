@@ -40,6 +40,7 @@ public class Door : MonoBehaviour, IInteractable
 
     // True once the door has been opened
     private bool isOpen;
+    private InventoryManager inventoryManager;
 
     private Quaternion closedRotation;
     private Quaternion openRotation;
@@ -57,6 +58,7 @@ public class Door : MonoBehaviour, IInteractable
         // Remember the closed rotation and work out the open one
         closedRotation = hinge.localRotation;
         openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
+        inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
     }
 
     // Update is called once per frame
@@ -72,7 +74,7 @@ public class Door : MonoBehaviour, IInteractable
         // TODO add sound
         // Locked and no key (play the locked sound and stop)
         
-            if (isLocked && !SimpleInventory.Has(keyNeeded))
+            if (isLocked && !inventoryManager.HasItem(keyNeeded))
             {
                 Debug.Log("The door is locked");
 

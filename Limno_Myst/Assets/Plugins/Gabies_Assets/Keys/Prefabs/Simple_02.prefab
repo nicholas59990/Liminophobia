@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 3667994811550271309}
   - component: {fileID: 639092874143537870}
   - component: {fileID: 6252438814548282212}
+  - component: {fileID: 7981310586000558920}
   m_Layer: 0
   m_Name: Simple_02
   m_TagString: Untagged
@@ -200,6 +201,7 @@ MonoBehaviour:
   itemName: Key
   completesObjective: 1
   nextObjective: Open the exit room
+  pickupSound: {fileID: 8300000, guid: 394405de0fac4e14782b0423acf95e3a, type: 3}
 --- !u!65 &6252438814548282212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -221,6 +223,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.080597885, y: 0.1305755, z: 0.027770996}
   m_Center: {x: -0.010818001, y: -0.0011685342, z: -0.0018005371}
+--- !u!114 &7981310586000558920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019568617730713240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba01e2526d2dcd4280817293dbad694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemName: Key
+  quantity: 1
+  sprite: {fileID: 21300000, guid: ad052d52cfd2af2428d809beca38b450, type: 3}
+  itemDescription: A worn gold key. The metal is cold to the touch. Something about
+    it feels important.
 --- !u!1 &4723547211238572199
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class DialogueManager : MonoBehaviour
     // Seconds between each letter
     [SerializeField] private float typingSpeed = 0.04f;
 
+    public GameObject keyObj;
+
     // The Audio Source on this object
     private AudioSource typingSource;
 
@@ -212,6 +214,11 @@ public class DialogueManager : MonoBehaviour
         if (newObjective != "" && ObjectiveHUD.Instance != null)
         {
             ObjectiveHUD.Instance.SetObjective(newObjective);
+
+            if (newObjective == "Find the key") 
+            {
+                keyObj.SetActive(true);
+            }
         }
 
         IsPlaying = false;

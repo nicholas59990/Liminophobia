@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb3cbae95ee5a4b998f59eea06130e, type: 3}
   m_Name: GreenBull
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Key
+  itemName: GreenBull
   statToChange: 2
   amountToChangeStat: 20
   duration: 5

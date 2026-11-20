@@ -10,12 +10,6 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] itemSlot;
     public ItemSO[] itemSOs;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -75,5 +69,49 @@ public class InventoryManager : MonoBehaviour
             itemSlot[i].selectedShader.SetActive(false);
             itemSlot[i].thisItemSelected = false;
         }
+    }
+
+    // Looks up the dropped prefab for an item by its name
+    public GameObject GetDropPrefab(string itemName)
+    {
+        // Go through every ItemSO we know about
+        for (int i = 0; i < itemSOs.Length; i++)
+        {
+            // if the name matches, hand back the item's dropped prefab
+            if (itemSOs[i].itemName == itemName)
+            {
+                return itemSOs[i].dropPrefab;
+            }
+        }
+        // If no match found
+        return null;
+    }
+
+    // Returns true if this item can be used by clicking it
+    public bool IsConsumable(string itemName)
+    {
+        for (int i = 0; i < itemSOs.Length; i++)
+        {
+            if (itemSOs[i].itemName == itemName)
+            {
+                return itemSOs[i].consumable;
+            }
+        }
+        // If no ItemSO found (Not Usable)
+        return false;
+    }
+
+    // Returns true if any inventory slot holds that specific item
+    public bool HasItem(string itemName)
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            if (itemSlot[i].itemName == itemName && itemSlot[i].quantity > 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

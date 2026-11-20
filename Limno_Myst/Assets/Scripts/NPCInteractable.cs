@@ -15,7 +15,14 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     // Where the camera goes while talking
     [SerializeField] private Transform dialogueCameraPoint;
 
-    public string InteractUIText => "TALK"; //make it show who you are talking with later
+    private InventoryManager inventoryManager;
+
+    public string InteractUIText => "TALK"; // make it show who you are talking with later
+
+    void Start()
+    {
+        inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
+    }
 
     public void Interact(PlayerInteract playerInteract){
 
@@ -35,7 +42,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
         // Pick which dialogue to play
         TextAsset story = inkJSON;
 
-        if (inkJSONAfterKey != null && SimpleInventory.Has(itemNeeded))
+        if (inkJSONAfterKey != null && inventoryManager.HasItem(itemNeeded))
         {
             story = inkJSONAfterKey;
         }

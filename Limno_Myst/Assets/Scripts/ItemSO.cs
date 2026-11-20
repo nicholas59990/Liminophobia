@@ -16,6 +16,12 @@ public class ItemSO : ScriptableObject
     // How long the effect will last
     public float duration = 5f;
 
+    // The 3D prefab
+    public GameObject dropPrefab;
+
+    // Untick for items that shouldn't be consumable (e.g., keys)
+    public bool consumable = true;
+
     public void UseItem()
     {
 

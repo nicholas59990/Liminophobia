@@ -89,15 +89,20 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
    public void OnLeftClick()
    {
-        if (thisItemSelected)
+        if (thisItemSelected && quantity > 0)
         {
+            if (!inventoryManager.IsConsumable(itemName))
+            {
+                return;
+            }
+
             inventoryManager.UseItem(itemName);
-                this.quantity -= 1;
-                quantityText.text = this.quantity.ToString();
-                if (this.quantity <= 0)
-                {
-                    EmptySlot();
-                }
+            this.quantity -= 1;
+            quantityText.text = this.quantity.ToString();
+            if (this.quantity <= 0)
+            {
+                EmptySlot();
+            }
         } 
         else
         {
@@ -136,5 +141,26 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
    public void OnRightClick()
    {
 
+        // Do nothing if slot empty or item has no drop prefab
+        if (quantity <= 0 || inventoryManager.GetDropPrefab(itemName) == null)
+        {
+            return;
+        };
+
+        // Get this item's 3D prefab
+        GameObject pref = inventoryManager.GetDropPrefab(itemName);
+
+        // Spawn it near player
+        Transform player = GameObject.FindWithTag("Player").transform;
+        Vector3 spawn = player.position + player.forward * 1.5f + Vector3.down * 0.9f;
+        Instantiate(pref, spawn, Quaternion.identity);
+
+        // Subtract the item
+        this.quantity -= 1;
+        quantityText.text = this.quantity.ToString();
+        if (this.quantity <= 0)
+        {
+            EmptySlot();
+        }
    }
 }
