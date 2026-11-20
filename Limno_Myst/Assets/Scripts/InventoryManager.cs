@@ -46,7 +46,6 @@ public class InventoryManager : MonoBehaviour
             if (itemSOs[i].itemName == itemName)
             {
                 itemSOs[i].UseItem();
-                return;
             }
         }
     }

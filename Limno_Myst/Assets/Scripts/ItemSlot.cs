@@ -92,14 +92,45 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         if (thisItemSelected)
         {
             inventoryManager.UseItem(itemName);
-        }
+                this.quantity -= 1;
+                quantityText.text = this.quantity.ToString();
+                if (this.quantity <= 0)
+                {
+                    EmptySlot();
+                }
+        } 
+        else
+        {
 
-        inventoryManager.DeselectAllSlots();
-        selectedShader.SetActive(true);
-        thisItemSelected = true;
-        ItemDescriptionNameText.text = itemName;
-        ItemDescriptionText.text = itemDescription;
-        itemDescriptionImage.sprite = itemSprite;
+            inventoryManager.DeselectAllSlots();
+            selectedShader.SetActive(true);
+            thisItemSelected = true;
+            ItemDescriptionNameText.text = itemName;
+            ItemDescriptionText.text = itemDescription;
+            itemDescriptionImage.sprite = itemSprite;
+        }
+   }
+
+   private void EmptySlot()
+   {
+        // Turns off the text and Image for this item slot
+        quantityText.enabled = false;
+        itemImage.sprite = null;
+
+        // Reset slot's data
+        itemName = "";
+        itemDescription = "";
+        itemSprite = null;
+        quantity = 0;
+        isFull = false;
+        thisItemSelected = false;
+        selectedShader.SetActive(false);
+
+        // Clear the data
+        ItemDescriptionNameText.text = "";
+        ItemDescriptionText.text = "";
+        itemDescriptionImage.sprite = null;
+
    }
 
    public void OnRightClick()
