@@ -34046,6 +34046,10 @@ PrefabInstance:
       propertyPath: keyObj
       value: 
       objectReference: {fileID: 161508305829772459}
+    - target: {fileID: 1567981523455428357, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.924
+      objectReference: {fileID: 0}
     - target: {fileID: 2441247276165905863, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
       propertyPath: m_Name
       value: Capsule
@@ -41103,6 +41107,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6834735231104035899, guid: 5376dafe7a9d7ed439955d9a8d124273, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: f6001904ed16a2e4995efa12a8189eed, type: 3}
+    - target: {fileID: 7931735690128912451, guid: 5376dafe7a9d7ed439955d9a8d124273, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8429824370242203670, guid: 5376dafe7a9d7ed439955d9a8d124273, type: 3}
       propertyPath: m_LocalPosition.x
       value: 508.453

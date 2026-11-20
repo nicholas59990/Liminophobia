@@ -18,6 +18,10 @@
 - Stamina System: https://www.youtube.com/watch?v=Fs2YCoamO_U&t=52s
     - UI Fix: https://www.youtube.com/watch?v=ZzkIn41DFFo
 - Player Interaction: https://www.youtube.com/watch?v=LdoImzaY6M4
+- Stamina System: https://www.youtube.com/watch?v=Fs2YCoamO_U&t=52s 
+- Player Interaction: 
+    - https://www.youtube.com/watch?v=LdoImzaY6M4
+    - https://www.youtube.com/watch?v=Eg7oP7mcNbc
 - NPC Dialogue (Ink runtime API): https://github.com/inkle/ink/blob/master/Documentation/RunningYourInk.md
 - Inventory System:
     - Part 1: UI Creation & Game Pause: https://www.youtube.com/watch?v=LaQp5u0_UYk&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=4

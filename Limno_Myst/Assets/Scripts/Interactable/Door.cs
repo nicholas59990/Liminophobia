@@ -5,7 +5,7 @@ public class Door : MonoBehaviour, IInteractable
 
     [Header("Lock")]
     // Tick this if the door needs a key
-    [SerializeField] private bool isLocked= true;
+    [SerializeField] private bool isLocked = true;
 
     // The item name the door needs
     [SerializeField] private string keyNeeded = "Key";
@@ -47,8 +47,9 @@ public class Door : MonoBehaviour, IInteractable
 
     public string InteractUIText => "Open Door";
     public bool CanInteract => !isOpen;
-    
-    public void Interact(PlayerInteract playerInteract){
+
+    public void Interact(PlayerInteract playerInteract)
+    {
         TryOpen();
     }
 
@@ -71,22 +72,25 @@ public class Door : MonoBehaviour, IInteractable
 
     private void TryOpen()
     {
-        // TODO add sound
         // Locked and no key (play the locked sound and stop)
         
-            if (isLocked && !inventoryManager.HasItem(keyNeeded))
-            {
-                Debug.Log("The door is locked");
+        if (isLocked && !inventoryManager.HasItem(keyNeeded))
+        {
+            Debug.Log("The door is locked");
+            //Move player camera to face door
 
-                if (lockedSound != null)
-                {
-                    AudioSource.PlayClipAtPoint(lockedSound, transform.position);
-                }
-                if(lockedDialogue != null){
-                    DialogueManager.Instance.StartDialogue(lockedDialogue);
-                }
-                return;
+            if (lockedSound != null)
+            {
+                AudioSource.PlayClipAtPoint(lockedSound, transform.position);
             }
+            if (lockedDialogue != null)
+            {
+
+                DialogueManager.Instance.StartDialogue(lockedDialogue);
+            }
+
+            return;
+        }
 
         // Open the door
         isOpen = true;
