@@ -61,6 +61,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 cameraStartPosition;
     private bool isSprinting;
 
+    // Used for temporary speed boosts from items
+    private float baseMoveSpeed = 7f;
+    private float currentSpeedMult = 1f; // 1 is normal higher is fast and lower is slower
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -77,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Start with full stamina
         currentStamina = maxStamina;
+
+        // Store the original speed so we can return to it later
+        baseMoveSpeed = moveSpeed;
 
         // Remember where the camera normally sits
         if (playerCamera != null)
@@ -149,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = true;
 
             // Increase the player's movement speed
-            moveSpeed = 7f * 2;
+            moveSpeed = baseMoveSpeed * 2f * currentSpeedMult;
 
             // Drain stamina over time while sprinting
             currentStamina -= staminaDrain * Time.deltaTime;
@@ -166,8 +173,8 @@ public class PlayerMovement : MonoBehaviour
 
             isSprinting = false;
 
-            // Use the normal movement speed
-            moveSpeed = 7f;
+            // Use the normal movement speed + any item speed mult
+            moveSpeed = baseMoveSpeed * currentSpeedMult;
 
             // Regenerate stamina when not sprinting
             currentStamina += staminaRegen * Time.deltaTime;
@@ -306,5 +313,53 @@ public class PlayerMovement : MonoBehaviour
         float prog = stepTimer / stepTime;
         float bobYpos = -Mathf.Cos(prog * Mathf.PI * 2f) * bobAmount;
         playerCamera.localPosition = cameraStartPosition + new Vector3(0f, bobYpos, 0f);
+    }
+
+    // Item Effects
+    
+    // Temporarily changes stamina (positive/negative)
+    public void ChangeStamina(float amount, float duration)
+    {
+       StartCoroutine(StaminaChangeCoroutine(amount, duration));
+    }
+
+    private IEnumerator StaminaChangeCoroutine(float amount, float duration)
+    {
+        currentStamina += amount;
+        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+
+        // Update the stamina bar UI
+        if (staminaBar != null)
+        {
+            staminaBar.SetStamina(currentStamina, maxStamina);
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        // Remove the effect after the duration
+        currentStamina -= amount;
+        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+
+        if (staminaBar != null)
+        {
+            staminaBar.SetStamina(currentStamina, maxStamina);
+        }
+    }
+    
+    public void ChangeSpeed(float amount, float duration)
+    {
+        StartCoroutine(SpeedChangeCoroutine(amount, duration));
+    }
+
+    private IEnumerator SpeedChangeCoroutine(float amount, float duration)
+    {
+        // Convert the flat amount into a mult
+        // E.g., amount 20 with baseSpeed 7 --> mult is around 3.86
+        currentSpeedMult = 1f + (amount / baseMoveSpeed);
+
+        yield return new WaitForSeconds(duration);
+
+        // Return to normal speed
+        currentSpeedMult = 1f;
     }
 }

@@ -34039,6 +34039,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule
       objectReference: {fileID: 0}
+    - target: {fileID: 3300142980554261051, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: itemSOs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300142980554261051, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: 'itemSOs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b790570d5b0793419aa09cf43be6a9b, type: 2}
     - target: {fileID: 7642002849294355586, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 510

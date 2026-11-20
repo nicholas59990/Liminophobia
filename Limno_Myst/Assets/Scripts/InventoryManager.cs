@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryMenu;
     private bool menuAct; // Track menu on/off
     public ItemSlot[] itemSlot;
+    public ItemSO[] itemSOs;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +35,19 @@ public class InventoryManager : MonoBehaviour
             menuAct = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+    }
+
+    public void UseItem(string itemName)
+    {
+
+        for (int i = 0; i < itemSOs.Length; i++)
+        {
+            if (itemSOs[i].itemName == itemName)
+            {
+                itemSOs[i].UseItem();
+                return;
+            }
         }
     }
 

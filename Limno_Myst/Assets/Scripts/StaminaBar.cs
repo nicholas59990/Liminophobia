@@ -39,19 +39,17 @@ public class StaminaBar : MonoBehaviour
         {
             staminaFill.fillAmount = currentFill;
             
-            // Turn the bar red when stamina is at 20% or lower
-            if (targetFill <= 0.2f)
+            // Blend from Green to Orange
+            if (currentFill > 0.55f)
             {
-                staminaFill.color = lowColor; 
-            }
-            else if(targetFill <= 0.55)
-            {
-                staminaFill.color = mediumColor;
+                float texture = Mathf.InverseLerp(1f, 0.55f, currentFill);
+                staminaFill.color = Color.Lerp(normalColor, mediumColor, texture); 
             }
             else
             {
-                // Keep the bar orange when stamina is above 20%
-                staminaFill.color = normalColor;
+                // Blend from Orange to Red
+                float texture = Mathf.InverseLerp(0.55f, 0f, currentFill);
+                staminaFill.color = Color.Lerp(mediumColor, lowColor, texture);
             }
         }
     }
