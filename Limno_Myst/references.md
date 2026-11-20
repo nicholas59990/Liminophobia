@@ -15,9 +15,21 @@
 
 
 # External Implementation Sources
-- Stamina System: https://www.youtube.com/watch?v=Fs2YCoamO_U&t=52s 
+- Stamina System: https://www.youtube.com/watch?v=Fs2YCoamO_U&t=52s
+    - UI Fix: https://www.youtube.com/watch?v=ZzkIn41DFFo
 - Player Interaction: https://www.youtube.com/watch?v=LdoImzaY6M4
 - NPC Dialogue (Ink runtime API): https://github.com/inkle/ink/blob/master/Documentation/RunningYourInk.md
+- Inventory System:
+    - Part 1: UI Creation & Game Pause: https://www.youtube.com/watch?v=LaQp5u0_UYk&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=4
+    - Part 2: Collectible Items: https://www.youtube.com/watch?v=e7-EJd5dQgQ&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=4
+    - Part 3: Fillable Item Slots: https://www.youtube.com/watch?v=HInkDgCaf1w&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=5
+    - Part 4: Item Selection: https://www.youtube.com/watch?v=naDJPTxvgqc&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=6
+    - Part 5: Item Descriptions: https://www.youtube.com/watch?v=GcWN1gZd36E&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=7
+    - Part 6: Stackable Items: https://www.youtube.com/watch?v=2nTUFWTgS0g&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=8
+    - Part 7: Scriptable Items: https://www.youtube.com/watch?v=IbybLKqq7PA&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=9
+    - Part 8: Deleting Used Items: https://www.youtube.com/watch?v=xvivINDa8-w&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=10
+    - Part 9: Dropping Items: https://www.youtube.com/watch?v=lgmmDGqBX4k&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=11
+    - Extra: Saving Data Between Scenes: https://www.youtube.com/watch?v=hzdADY2LkJU&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=13
 
 # Tools & Packages
 - Ink (dialogue scripting language) by inkle (installed via the Unity Asset Store, version 1.1.8): https://assetstore.unity.com/packages/tools/integration/ink-integration-for-unity-60055
