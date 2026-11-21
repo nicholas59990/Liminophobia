@@ -8,11 +8,12 @@ public class GenManager : MonoBehaviour
     [SerializeField] private Transform WorldGrid;
     [SerializeField] private List<GameObject> RoomPrefabs;
     [SerializeField] private List<GameObject> LightPrefabs;
-    [SerializeField] private int mapSize = 16; //MUST BE A SQUARE NUMBER OR IT BREAKS!!!
+    [SerializeField] private int mapSize; //MUST BE A SQUARE NUMBER OR IT BREAKS!!!
     [SerializeField] private GameObject EmptyRoomPrefab; // The prefab for an empty room, used to fill in gaps in the grid
     [SerializeField] private GameObject BarrierPrefab; // The prefab for a barrier, used to block off areas of the grid
     [SerializeField] private GameObject SpawnRoomPrefab, ExitRoomPrefab; // The prefabs for the spawn and exit rooms, used to place them in the grid
     [SerializeField] private GameObject PlayerObject;
+    private GameObject spawnRoom;
     public List<GameObject> GeneratedRooms; // A list to keep track of all the rooms that have been generated in the grid
 
     [Header("Map Generation Settings")]
@@ -43,17 +44,9 @@ public class GenManager : MonoBehaviour
             {
                 if (positionTracker == mapSizeSquareRoot) //move the postion back to the start of the next row if the current row is full
                 {
-                    if (currentState == GenState.GeneratingBarrier) //put it to the right
-                    {
-                        GenerateBarrier();
-                    }
                     positionTracker = 0;
                     currentPositionX = 0;
                     currentPositionZ += roomSize;
-                    if (currentState == GenState.GeneratingBarrier) //put it to the left
-                    {
-                        GenerateBarrier();
-                    }
                 }
                 currentPosition = new(currentPositionX, 0, currentPositionZ);
                 switch (currentState)
@@ -67,7 +60,7 @@ public class GenManager : MonoBehaviour
                             GeneratedRooms.Add(Instantiate(LightPrefabs[Random.Range(0, LightPrefabs.Count)], currentPosition, Quaternion.identity, WorldGrid)); //Instantiates the light prefab at the current position and sets its parent to the WorldGrid
                         break;
                     case GenState.GeneratingBarrier:
-                        if (currentRoomIndex <= mapSizeSquareRoot && currentRoomIndex >= 0 && currentRoomIndex >= mapSize - mapSizeSquareRoot) //for top and bottom
+                        if (i == 0)
                         {
                             GenerateBarrier();
                         }
@@ -96,19 +89,27 @@ public class GenManager : MonoBehaviour
         }
     }
 
-    public void GenerateBarrier()
+    private void GenerateBarrier()
     {
-       currentPosition = new(currentPositionX, 0, currentPositionZ);
-        Instantiate(BarrierPrefab, currentPosition, Quaternion.identity, WorldGrid); //Instantiates the barrier prefab at the current position and sets its parent to the WorldGrid
+        for (int row = -1; row <= mapSizeSquareRoot; row++)
+        {
+            for (int col = -1; col <= mapSizeSquareRoot; col++)
+            {
+                bool isBorder = row == -1 || row == mapSizeSquareRoot || col == -1 || col == mapSizeSquareRoot;
+                if (!isBorder)
+                {
+                    continue;
+                }
+                Vector3 pos = new Vector3(col * roomSize, 0, row * roomSize);
+                Instantiate(BarrierPrefab, pos, Quaternion.identity, WorldGrid);
+            }
+        }
     }
 
-    public GameObject spawnRoom;
-
-    public void SpawnPlayer()
+    private void SpawnPlayer()
     {
         PlayerObject.SetActive(false); //Deactivates the player object
-        PlayerObject.transform.position = new Vector3(spawnRoom.transform.position.x, spawnRoom.transform.position.y + 1, spawnRoom.transform.position.z); //Moves the player object to the position of the spawn room and raises it by 1 unit on the Y axis
-        PlayerObject.transform.position = spawnRoom.transform.position; //Moves the player object to the position of the spawn room
+        PlayerObject.transform.position = new Vector3(spawnRoom.transform.position.x, spawnRoom.transform.position.y + 1.5f, spawnRoom.transform.position.z); //Moves the player object to the position of the spawn room and raises it by 1.5 unit on the Y axis
         PlayerObject.SetActive(true); //Activates the player object
     }
 
