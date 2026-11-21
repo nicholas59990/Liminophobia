@@ -12,6 +12,7 @@
 - Keys: https://assetstore.unity.com/packages/3d/props/tools/simple-low-poly-keys-3digitalis-231162 
 - Furniture: https://assetstore.unity.com/packages/3d/props/furniture/furniture-mega-pack-free-330002
 - Locker: https://assetstore.unity.com/packages/package/56405  
+- Wood Door Textures: https://assetstore.unity.com/packages/2d/textures-materials/wood/plank-textures-pbr-72318#content
 
 
 # External Implementation Sources
@@ -34,6 +35,7 @@
     - Part 8: Deleting Used Items: https://www.youtube.com/watch?v=xvivINDa8-w&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=10
     - Part 9: Dropping Items: https://www.youtube.com/watch?v=lgmmDGqBX4k&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=11
     - Extra: Saving Data Between Scenes: https://www.youtube.com/watch?v=hzdADY2LkJU&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=13
+- Procedural Room Generation: https://www.youtube.com/watch?v=EpqzDd933R0
 
 # Tools & Packages
 - Ink (dialogue scripting language) by inkle (installed via the Unity Asset Store, version 1.1.8): https://assetstore.unity.com/packages/tools/integration/ink-integration-for-unity-60055

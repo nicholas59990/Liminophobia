@@ -98,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         // Do not move or look around while dialogue is open
         if (DialogueManager.IsPlaying)
         {
