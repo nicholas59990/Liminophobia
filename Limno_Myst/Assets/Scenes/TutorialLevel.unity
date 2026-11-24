@@ -44431,6 +44431,14 @@ PrefabInstance:
       propertyPath: keyObj
       value: 
       objectReference: {fileID: 161508305829772459}
+    - target: {fileID: 5821848416254969061, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: toggleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2283d8ce1d655e44ab645967727134d8, type: 3}
+    - target: {fileID: 6974945426572879479, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: dropSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a22ce8e80a029f408c35dbb882ae143, type: 3}
     - target: {fileID: 6974945426572879479, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
       propertyPath: itemSOs.Array.size
       value: 1

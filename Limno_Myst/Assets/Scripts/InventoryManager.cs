@@ -10,6 +10,18 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] itemSlot;
     public ItemSO[] itemSOs;
 
+    // Sound to play when player drops a item
+    [SerializeField] private AudioClip dropSound;
+
+    // Used to check if player hiding or in a transition
+    private PlayerMovement playerMovement;
+
+    void Start()
+    {
+        // Find the player's movement script in the scene
+        playerMovement = FindFirstObjectByType<PlayerMovement>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -24,6 +36,12 @@ public class InventoryManager : MonoBehaviour
 
         else if (Input.GetButtonDown("Inventory") && !menuAct)
         {
+            // Do not open inventory while hiding or during a fade
+            if (playerMovement != null && (playerMovement.IsHidden || playerMovement.IsTransitioning))
+            {
+                return;
+            }
+            
             Time.timeScale = 0;
             InventoryMenu.SetActive(true); // activates menu
             menuAct = true;
@@ -113,5 +131,14 @@ public class InventoryManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    // Plays the drop sound at the given position
+    public void PlayDropSound(Vector3 position)
+    {
+        if (dropSound != null)
+        {
+            AudioSource.PlayClipAtPoint(dropSound, position);
+        }
     }
 }

@@ -145,7 +145,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         if (quantity <= 0 || inventoryManager.GetDropPrefab(itemName) == null)
         {
             return;
-        };
+        }
 
         // Get this item's 3D prefab
         GameObject pref = inventoryManager.GetDropPrefab(itemName);
@@ -154,6 +154,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         Transform player = GameObject.FindWithTag("Player").transform;
         Vector3 spawn = player.position + player.forward * 1.5f + Vector3.down * 0.9f;
         Instantiate(pref, spawn, Quaternion.identity);
+
+        // Play the drop sound
+        inventoryManager.PlayDropSound(spawn);
 
         // Subtract the item
         this.quantity -= 1;
