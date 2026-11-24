@@ -9,7 +9,13 @@ public class PlayerInteract : MonoBehaviour
     private float interactRange = 2f;
     private PlayerMovement movement;
     private Camera playerCamera;
-    
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+
+    }
+
     // Update is called once per frame
     private void Update()
     {
