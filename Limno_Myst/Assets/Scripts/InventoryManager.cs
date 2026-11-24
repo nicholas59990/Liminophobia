@@ -11,10 +11,13 @@ public class InventoryManager : MonoBehaviour
     public ItemSO[] itemSOs;
 
     // Sound to play when player drops a item
-    [SerializeField] private AudioClip dropSound;
+    [SerializeField] public AudioClip dropSound;
 
     // Used to check if player hiding or in a transition
     private PlayerMovement playerMovement;
+
+    [Header("Hotbar")]
+    public ItemSlot[] hotbarSlots; 
 
     void Start()
     {
@@ -36,17 +39,49 @@ public class InventoryManager : MonoBehaviour
 
         else if (Input.GetButtonDown("Inventory") && !menuAct)
         {
+            // DO not open inventory while dialogue is occuring
+            if (DialogueManager.IsPlaying)
+            {
+                return;
+            }
+
             // Do not open inventory while hiding or during a fade
             if (playerMovement != null && (playerMovement.IsHidden || playerMovement.IsTransitioning))
             {
                 return;
             }
-            
+
             Time.timeScale = 0;
             InventoryMenu.SetActive(true); // activates menu
             menuAct = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+
+        // Hotbar keys
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UseHotbar(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UseHotbar(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            UseHotbar(2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            UseHotbar(3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            UseHotbar(4);
         }
     }
 
@@ -138,7 +173,93 @@ public class InventoryManager : MonoBehaviour
     {
         if (dropSound != null)
         {
+            // AudioClip.PlayClipAtPoint(dropSound, Camera.main.transform.position);
             AudioSource.PlayClipAtPoint(dropSound, position);
+        }
+    }
+
+    // Called when the player clicks a hotbar slot while an item is selected in the inventory
+    public void AssignToHotbar(int hotbarIndex, ItemSlot sourceSlot)
+    {
+        if (hotbarIndex < 0 || hotbarIndex >= hotbarSlots.Length)
+        {
+            return;
+        }
+
+        if (sourceSlot == null || sourceSlot.quantity <= 0)
+        {
+            return;
+        }
+
+        // remove this item from any other hotbar slots (prevent same item to occupy multiple hotbar slots)
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            if (hotbarSlots[i].itemName == sourceSlot.itemName)
+            {
+                hotbarSlots[i].EmptySlot();
+            }
+        }
+
+        ItemSlot hotbar = hotbarSlots[hotbarIndex];
+
+        // Copy the item data from inventory slot into the hotbar slot
+        hotbar.itemName = sourceSlot.itemName;
+        hotbar.quantity = sourceSlot.quantity;
+        hotbar.itemSprite = sourceSlot.itemSprite;
+        hotbar.itemDescription = sourceSlot.itemDescription;
+        hotbar.isFull = true;
+
+        // Update the visual
+        hotbar.itemImage.sprite = sourceSlot.itemSprite;
+        hotbar.quantityText.text = sourceSlot.quantity.ToString();
+        hotbar.quantityText.enabled = true;
+    }
+
+    // Called when pressing keys 1 through 5
+    public void UseHotbar(int hotkey)
+    {
+        if (hotkey < 0 || hotkey >= hotbarSlots.Length)
+        {
+            return;
+        }
+
+        ItemSlot slot = hotbarSlots[hotkey];
+
+        // DO nothing if the slot is empty
+        if (slot.quantity <= 0)
+        {
+            return;
+        }
+
+        // Only use if it is a consumable
+        if (!IsConsumable(slot.itemName))
+        {
+            return;
+        }
+
+        // Actually use the item (Calls ItemSO.UseItem here)
+        UseItem(slot.itemName);
+
+        // Reduce quantity
+        slot.quantity--;
+        slot.quantityText.text = slot.quantity.ToString();
+
+        // Clear the slot if it reaches zero
+        if (slot.quantity <= 0)
+        {
+            slot.EmptySlot();
+        }
+    }
+
+    // Removes an item from all hotbar slots
+    public void ClearHotbarItem(string itemName)
+    {
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            if (hotbarSlots[i].itemName == itemName)
+            {
+                hotbarSlots[i].EmptySlot();
+            }
         }
     }
 }

@@ -34,6 +34,7 @@
     - Part 8: Deleting Used Items: https://www.youtube.com/watch?v=xvivINDa8-w&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=10
     - Part 9: Dropping Items: https://www.youtube.com/watch?v=lgmmDGqBX4k&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=11
     - Extra: Saving Data Between Scenes: https://www.youtube.com/watch?v=hzdADY2LkJU&list=PLSR2vNOypvs6eIxvTu-rYjw2Eyw57nZrU&index=13
+- Hotbar System: https://www.youtube.com/watch?v=I_kxqlalztw
 
 # Tools & Packages
 - Ink (dialogue scripting language) by inkle (installed via the Unity Asset Store, version 1.1.8): https://assetstore.unity.com/packages/tools/integration/ink-integration-for-unity-60055
