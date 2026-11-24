@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule
       objectReference: {fileID: 0}
+    - target: {fileID: 2938966258564662586, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0eb0f996ba805c34c9e5dc4df46deb6b, type: 2}
     - target: {fileID: 5566748475079015666, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
       propertyPath: interactDotThreshold
       value: 0.4
