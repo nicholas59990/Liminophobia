@@ -44430,7 +44430,15 @@ PrefabInstance:
     - target: {fileID: 5020073514940217579, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
       propertyPath: keyObj
       value: 
-      objectReference: {fileID: 3019568617730713240, guid: 5dd5a1ab6047d4848b7668734815016f, type: 3}
+      objectReference: {fileID: 161508305829772459}
+    - target: {fileID: 6974945426572879479, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: itemSOs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974945426572879479, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
+      propertyPath: 'itemSOs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d9da2d1d5342be9408c4e6529344f3df, type: 2}
     - target: {fileID: 7642002849294355586, guid: 116748c647acecc4b899ba279b0777fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 510
